@@ -22,32 +22,28 @@ Features:
 - [Demo](https://codepen.io/tmoses/pen/VwWaRKL)
 
 ```js
-  const Selection = require('selection-drag');
+  import selectionDrag from 'selection-drag';
+  ...
 
-  const currentContentContainer = document.querySelector('.container');
-  const sel = Selection({
-    container: currentContentContainer,
-    targetSelectors: `.${sharedCSSClassForElementsToSelect}`
-  });
-  sel.rect.addEventListener('_selectstart', e => {
-  // do stuff on select start.
-  })
+  const contentRef = document.querySelector('.container');
+  const sel = selectionDrag({ container: contentRef, targetSelectors: '.listitem'});
+
+  sel.rect.addEventListener('_selectstart', e => console.log('started!'))
   sel.rect.addEventListener('_selectend', e => {
-    const { selectedElements }: 
-      { selectedElements: Element[] | undefined } = e?.detail || {};
-        // use all *active selected elements
+    const { selectedElements } = e?.detail || {};
+    console.log(selectedElements); // use all *active selected elements
   });
-  sel.rect.addEventListener('_selected', e =>
-     e?.detail?.addedElement?.classList.add('active')
-   );
-   sel.rect.addEventListener('_removed', e =>
-     e?.detail?.removedElement?.classList.remove('active')
-   );
+  sel.rect.addEventListener('_selected', e => {
+     e.detail.addedElement.classList.add('active'); // maybe add a class to that element
+  });
+   sel.rect.addEventListener('_removed', e => {                                       
+     e.detail.removedElement.classList.remove('active'); // remove the added class
+  });
 
   // other code such as container drop event listeners
   // remove & disable mouse selection area
-  sel.cleanUp();
-  sel.disable();
+  // sel.cleanUp();
+  // sel.disable();
 ```
 
 ### Example Usage with React Hooks & TS
