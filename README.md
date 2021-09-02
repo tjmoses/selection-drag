@@ -1,4 +1,4 @@
-# Drag Selection - JS/TS Mouse Drag Area Library
+# Drag Selection - JS/TS Mouse Drag Area Selection Library
 
 > This is a very ✌ lightweight & `simple` library for selecting an area on mouse click and drag.
 
