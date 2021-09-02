@@ -1,8 +1,8 @@
 {
   "name": "selection-drag",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "selection-drag allows you to click and create a selection area using JS only.",
-  "main": "dist/index.js",
+  "main": "dist/selection.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tjmoses/selection-drag"
