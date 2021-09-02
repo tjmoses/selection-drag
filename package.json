@@ -1,14 +1,14 @@
 {
-  "name": "drag-selection",
+  "name": "selection-drag",
   "version": "1.0.0",
-  "description": "drag-selection allows you to click and create a selection area using JS only.",
+  "description": "selection-drag allows you to click and create a selection area using JS only.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjmoses/drag-selection"
+    "url": "git+https://github.com/tjmoses/selection-drag"
   },
-  "homepage": "https://github.com/tjmoses/drag-selection#readme",
-  "bugs": "https://github.com/tjmoses/drag-selection/issues",
+  "homepage": "https://github.com/tjmoses/selection-drag#readme",
+  "bugs": "https://github.com/tjmoses/selection-drag/issues",
   "keywords": [
     "drag selection",
     "js area selection library",

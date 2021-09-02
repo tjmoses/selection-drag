@@ -21,7 +21,7 @@ Pull requests are the best way to propose changes to the codebase (we use [Githu
 
 ## Issues
 
-We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/tjmoses/drag-selection/issues); it's that easy!
+We use GitHub issues to track public bugs. Report a bug by [opening a new issue](https://github.com/tjmoses/selection-drag/issues); it's that easy!
 
 ## Write detailed Bug Reports/Issues
 
