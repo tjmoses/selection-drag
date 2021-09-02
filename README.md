@@ -1,6 +1,6 @@
-# Drag Selection - JS Mouse Drag Area Library
+# Drag Selection - JS/TS Mouse Drag Area Library
 
-> This is a very ✌ lightweight & `simple` library (implemented with Typescript) for selecting an area on mouse click and drag.
+> This is a very ✌ lightweight & `simple` library for selecting an area on mouse click and drag.
 
 ## Install
 
@@ -22,7 +22,7 @@ Features:
 - Demo
 
 ```js
-  const Selection = require('/utils/selection');
+  const Selection = require('drag-selection');
 
   const currentContentContainer = document.querySelector('.container');
   const sel = Selection({
@@ -54,7 +54,7 @@ Features:
 
 ```TS
 // you can import any name since it uses default exports.
-import Selection from '/utils/selection';
+import Selection from 'drag-selection';
 ...
   const selectionRef = useRef<ReturnType<typeof Selection>>();
 ...
@@ -93,7 +93,7 @@ import Selection from '/utils/selection';
   }
 ```
 
-See further examples [here](https://github.com/tjmoses/drag-selection/#).
+See further examples [here](https://github.com/tjmoses/drag-selection/blob/master/index.test.js).
 
 ## Contributing
 
