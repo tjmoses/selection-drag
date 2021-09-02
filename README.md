@@ -19,7 +19,7 @@ Features:
 
 ### Example using JS alone
 
-- Demo
+- [Demo](https://codepen.io/tmoses/pen/VwWaRKL)
 
 ```js
   const Selection = require('selection-drag');

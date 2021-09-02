@@ -1,2 +1,4 @@
 coverage/coverage-summary.json
 src/**
+index.test.js
+contributing.md
