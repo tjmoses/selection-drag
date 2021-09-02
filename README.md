@@ -13,7 +13,7 @@ npm install selection-drag
 Features:
 
 - Takes in a Container Element and sets up `_selectstart`, `_selectend`, `_selected`, and `_removed` events on it. `_selectend` gets the final list of selected elements, and `_selected` gets each selected one, whereas `_removed` gets each removed one.
-- Also takes in target css selectors for the elements you want selected.
+- Also takes in target css selectors for the elements you want selected. The selection container has an id of `selectionRectangle` if you need to use it to add a click off event.
 - Dynamically adds/removes the selection div and has a `cleanUp` method to restart selection, in addition to `disable`/`enable` methods to remove/add the above event listeners.
 - Right and center mouse clicks are ignored, and scrolling is taken into consideration.
 
