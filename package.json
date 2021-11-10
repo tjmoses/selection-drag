@@ -1,8 +1,8 @@
 {
   "name": "selection-drag",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "selection-drag allows you to click and create a selection area using JS only.",
-  "main": "dist/selection.js",
+  "main": "dist/selection.min.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tjmoses/selection-drag"
@@ -21,22 +21,26 @@
     "react selection area library",
     "vue selection area library"
   ],
-  "scripts": {
-    "start": "npx ts-node-dev --respawn --transpile-only src/index.ts",
-    "build": "npx tsc",
-    "test": "jest --verbose --coverage"
-  },
-   "dependencies": {},
-  "devDependencies": {
-    "jest": "^26.6.3",
-    "make-coverage-badge": "^1.2.0",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.3.5"
-  },
   "jest": {
     "coverageReporters": [
       "json-summary"
-    ]
+    ],
+    "testEnvironment": "jsdom"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0",
+    "make-coverage-badge": "^1.2.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.5",
+    "uglify-js": "^3.14.1",
+    "@types/jest": "^27.0.1"
+  },
+  "scripts": {
+    "start": "npx ts-node-dev --respawn --transpile-only src/index.ts",
+    "build": "npx tsc",
+    "build:prod": "npm run build && npm run uglify && rm dist/selection.js && mv dist/selection.d.ts dist/selection.min.d.ts",
+    "uglify": "cd dist && npx uglifyjs --compress --mangle --output selection.min.js -- selection.js",
+    "test": "jest --verbose --coverage"
   },
   "author": "Tim M",
   "license": "MIT"

@@ -89,7 +89,7 @@ import Selection from 'selection-drag';
   }
 ```
 
-See further examples [here](https://github.com/tjmoses/selection-drag/blob/master/index.test.js).
+To support, Please &#127775; if you used / like this library!
 
 ## Contributing
 

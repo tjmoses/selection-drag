@@ -4,13 +4,27 @@
  */
 export default function Selection({
   container,
-  targetSelectors
+  targetSelectors,
+  options
 }: {
   /** The container you'll allow selecting from. */
   container: HTMLElement | null;
   /** Valid CSS Selector string for children within the selction area. */
   targetSelectors: string;
+  /** Further `optional` options. */
+  options?: {
+    /** The id that will be placed on the selection area div. Defaults to `selectionRectangle` */
+    selectionDivId?: string;
+    /** Only left clicks will enable the selection area. */
+    leftClickOnly?: boolean;
+  }
 }) {
+  const initialOptions = {
+    selectionDivId: 'selectionRectangle',
+    leftClickOnly: true
+  };
+  const _options = { ...initialOptions, ...options };
+
   if (!container) throw new Error('The container element must be defined!');
 
   const rect = document.createElement('div') as HTMLDivElement;
@@ -20,7 +34,7 @@ export default function Selection({
     position: absolute;
   `;
   rect.hidden = true;
-  rect.id = 'selectionRectangle';
+  rect.id = _options.selectionDivId;
   const ctx = {
     x1: 0,
     y1: 0,
@@ -37,10 +51,10 @@ export default function Selection({
   let selectedElements = [] as Element[];
   const selectStartEvent = new Event('_selectstart');
 
-  const onMouseDown = (e: MouseEvent) => {
+  function onMouseDown(e: MouseEvent) {
     if (state.disabled) return;
     const LEFT_CLICK = 1;
-    if (e.which !== LEFT_CLICK) return;
+    if (_options.leftClickOnly && e.which !== LEFT_CLICK) return;
     state.mouseDown = true;
     ctx.x1 = e.pageX;
     ctx.x2 = e.pageX;
@@ -49,13 +63,16 @@ export default function Selection({
     reCalc();
   };
 
-  const onMouseMove = (e: MouseEvent) => {
+  function onMouseMove(e: MouseEvent) {
     if (state.disabled || !state.mouseDown) return;
-    // wait till a position is set to debounce non selection drags
+    // Wait till a position is set to debounce non-selection drags.
     if (rect.hidden && !(ctx.x1 === 0 && ctx.x2 === 0 && ctx.y1 === 0 && ctx.y2 === 0)) {
       rect.hidden = false;
     }
-    if (!state.mounted) container.appendChild(rect);
+    if (!state.mounted) {
+      if (!container) throw new Error('The container element must be defined before mounting the selection rectanble!');
+      container.appendChild(rect);
+    }
     ctx.x2 = e.pageX;
     ctx.y2 = e.pageY;
     reCalc();
@@ -88,7 +105,7 @@ export default function Selection({
     }
   };
 
-  const onMouseUp = () => {
+  function onMouseUp() {
     if (!rect.hidden) rect.hidden = true;
     if (state.moving) {
       rect.dispatchEvent(
@@ -99,6 +116,7 @@ export default function Selection({
     }
     cleanUp();
   };
+
   container.addEventListener('mousedown', onMouseDown);
   container.addEventListener('mousemove', onMouseMove);
   container.addEventListener('mouseup', onMouseUp);
@@ -128,6 +146,8 @@ export default function Selection({
       left: boundingRect.left + window.scrollX
     };
     const r = getDimensions();
+    // We are checking if the boundingRect position is
+    // within the current selection rectangle AND vice-versa.
     if (
       ((r.xleft >= iRect.left && r.xleft <= iRect.right) ||
         (r.xright >= iRect.left && r.xright <= iRect.right) ||
@@ -142,9 +162,6 @@ export default function Selection({
     return false;
   }
 
-  /**
-   * Reset all elements, and unmount the selection div.
-   * */
   function cleanUp() {
     state.mouseDown = false;
     state.moving = false;
@@ -172,9 +189,19 @@ export default function Selection({
   }
 
   return {
+    /** The selection rectangle that is mounted and unmounted from the DOM. */
     rect,
+    /**
+     * Reset all elements/state, and unmount the selection div.
+     */
     cleanUp,
+    /** 
+    * Disable the container event listeners.
+    */
     disable,
+    /** 
+     * Re-add the container event listeners. Make sure to remove them first.
+     */
     enable
   };
 }
