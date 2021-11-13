@@ -1,5 +1,10 @@
 # Selection Drag - JS/TS Mouse Drag Area Selection Library
 
+![npm](https://img.shields.io/npm/v/selection-drag)
+![npm bundle size](https://img.shields.io/bundlephobia/min/selection-drag)
+![GitHub](https://img.shields.io/github/license/tjmoses/selection-drag)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
+
 > This is a very ✌ lightweight & `simple` library for selecting an area on mouse click and drag.
 
 ## Install
